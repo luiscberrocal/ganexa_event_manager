@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=ganexa_event_manager
+POSTGRES_USER=DPljxSIvBVotKNdPMmSXwrNZHxUSHOGb
+POSTGRES_PASSWORD=nlXL58wHHks57UoRnji627kGduYJa8sIudaJaLTQouIbSF3XaT9msB3uLT3S8ibE
