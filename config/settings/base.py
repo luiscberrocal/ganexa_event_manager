@@ -80,6 +80,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "ganexa_event_manager.users",
+    "ganexa_event_manager.events.apps.EventsConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
