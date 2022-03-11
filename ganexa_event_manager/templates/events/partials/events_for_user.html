@@ -1,0 +1,12 @@
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+  {% for event in events %}
+    <div class="row">
+      <div class="col-12">
+        {{ event.name }}
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
