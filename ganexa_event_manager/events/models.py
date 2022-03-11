@@ -35,5 +35,5 @@ class Ticket(TimeStampedModel):
     time_slot = models.ForeignKey(TimeSlot, verbose_name=_('Time slot'), related_name='tickets',
                                   on_delete=models.PROTECT)
 
-    def __str__(self):
-        return _(f'Ticket for {self.owner.email} for {self.time_slot.start_time}')
+    #def __str__(self):
+    #    return _(f'Ticket for {self.owner} for {self.time_slot.start_time}')
