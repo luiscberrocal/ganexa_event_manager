@@ -1,0 +1,15 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Celery
+# ------------------------------------------------------------------------------
+
+# Flower
+CELERY_FLOWER_USER=OJFpVZnsZjeEEvffReSDKVJckGIMcDYo
+CELERY_FLOWER_PASSWORD=FwkeyyI0cHZExRz7DsYqd0wNU3pRYZMrcjLk7PrVRivB222ks5LjOlJSyZLzr9Wl
+DJANGO_EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
