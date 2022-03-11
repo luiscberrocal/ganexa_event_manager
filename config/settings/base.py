@@ -229,6 +229,11 @@ EMAIL_BACKEND = env(
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('GMAIL_SECRET')
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
@@ -303,7 +308,7 @@ SOCIALACCOUNT_ADAPTER = "ganexa_event_manager.users.adapters.SocialAccountAdapte
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 SOCIALACCOUNT_FORMS = {"signup": "ganexa_event_manager.users.forms.UserSocialSignupForm"}
 
-# django-rest-framework
+# django-rest-frameworkEMAIL_HOST_USER
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {

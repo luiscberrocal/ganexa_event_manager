@@ -20,6 +20,7 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+      - ./.envs/.production/.secrets
     ports:
       - "8000:8000"
     command: /start
@@ -45,6 +46,7 @@ services:
       dockerfile: ./compose/local/docs/Dockerfile
     env_file:
       - ./.envs/.local/.django
+      - ./.envs/.production/.secrets
     volumes:
       - ./docs:/docs:z
       - ./config:/app/config:z
