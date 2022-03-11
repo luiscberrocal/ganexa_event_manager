@@ -2,10 +2,19 @@
 {% load i18n %}
 
 {% block content %}
+  <div class="row">
+    <div class="col-12">
+      <h4>{% trans "Events" %}</h4>
+    </div>
+  </div>
   {% for event in events %}
     <div class="row">
-      <div class="col-12">
-        {{ event.name }}
+      <div class="col-6">
+        <h5>{{ event.name }}</h5>
+        {{ event.start_date }} - {{ event.end_date }}
+      </div>
+      <div class="col-6">
+        <button class="btn btn-primary">{% trans 'Get ticket' %}</button>
       </div>
     </div>
   {% endfor %}
