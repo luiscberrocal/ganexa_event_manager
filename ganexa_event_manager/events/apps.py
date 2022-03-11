@@ -1,6 +1,8 @@
 from django.apps import AppConfig
+from django.utils.translation import ugettext_lazy as _
 
 
 class EventsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'events'
+    name = "ganexa_event_manager.events"
+    verbose_name = _("Events")

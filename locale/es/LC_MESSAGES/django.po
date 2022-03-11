@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -20,49 +19,49 @@ msgstr ""
 
 #: ganexa_event_manager/events/models.py:9
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: ganexa_event_manager/events/models.py:10
 msgid "Start date"
-msgstr ""
+msgstr "Fecha de inicio"
 
 #: ganexa_event_manager/events/models.py:11
 msgid "End date"
-msgstr ""
+msgstr "Fecha final"
 
 #: ganexa_event_manager/events/models.py:12
 msgid "Max tickets per day"
-msgstr ""
+msgstr "Maximo número de tíquetes por día"
 
 #: ganexa_event_manager/events/models.py:19
 #: ganexa_event_manager/events/models.py:32
 msgid "Event"
-msgstr ""
+msgstr "Evento"
 
 #: ganexa_event_manager/events/models.py:20
 msgid "Start time"
-msgstr ""
+msgstr "Hora de inicio"
 
 #: ganexa_event_manager/events/models.py:21
 msgid "End time"
-msgstr ""
+msgstr "Hora final"
 
 #: ganexa_event_manager/events/models.py:22
 msgid "Max tickets"
-msgstr ""
+msgstr "Máxmio número de tiquetes"
 
 #: ganexa_event_manager/events/models.py:33
 msgid "Owner"
-msgstr ""
+msgstr "Dueño"
 
 #: ganexa_event_manager/events/models.py:35
 msgid "Time slot"
-msgstr ""
+msgstr "Espacio de tiempo"
 
 #: ganexa_event_manager/events/models.py:39
 #, python-brace-format
 msgid "Ticket for {self.owner.email} for {self.time_slot.start_time}"
-msgstr ""
+msgstr "Tiquete  de {self.owner.email} para {self.time_slot.start_time}"
 
 #: ganexa_event_manager/templates/account/account_inactive.html:5
 #: ganexa_event_manager/templates/account/account_inactive.html:8
