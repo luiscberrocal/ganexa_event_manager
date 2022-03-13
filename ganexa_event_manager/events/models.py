@@ -1,3 +1,6 @@
+from datetime import datetime, timedelta
+from typing import List
+
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -13,6 +16,18 @@ class Event(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    def create_times_slots(self, start_time: datetime, duration: int, slot_count: int,
+                           max_tickets: int) -> List['TimeSlot']:
+        time_slots = []
+        current_time = start_time
+        for _ in range(slot_count):
+            time_slot = TimeSlot(event=self, start_time=current_time,
+                                 end_time=current_time + timedelta(hours=duration),
+                                 max_tickets=max_tickets)
+            time_slots.append(time_slot)
+            current_time += timedelta(hours=duration)
+        return TimeSlot.objects.bulk_create(time_slots)
 
 
 class TimeSlot(TimeStampedModel):
@@ -35,5 +50,5 @@ class Ticket(TimeStampedModel):
     time_slot = models.ForeignKey(TimeSlot, verbose_name=_('Time slot'), related_name='tickets',
                                   on_delete=models.PROTECT)
 
-    #def __str__(self):
+    # def __str__(self):
     #    return _(f'Ticket for {self.owner} for {self.time_slot.start_time}')
