@@ -8,6 +8,13 @@ from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
+from django.utils.translation import ugettext_lazy as _
+from ganexa_event_manager import __version__ as current_version
+
+admin.site.site_header = _("Ganexa Event Manager Admin v{}".format(current_version))
+admin.site.site_title = _("Gaanexa Event Manager Portal v{}".format(current_version))
+admin.site.index_title = _("Welcome to Ganexa Event Manager")
+
 urlpatterns = i18n_patterns(
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
