@@ -1,0 +1,14 @@
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12">
+      {% if ticket %}
+        <button class="btn btn-primary">{% trans 'View ticket' %}</button>
+      {% else %}
+        <button class="btn btn-primary">{% trans 'Get ticket' %}</button>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

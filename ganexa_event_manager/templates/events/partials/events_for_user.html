@@ -8,13 +8,14 @@
     </div>
   </div>
   {% for event in events %}
-    <div class="row">
+    <div class="row" id="event-id-{{ event.id }}">
       <div class="col-6">
         <h5>{{ event.name }}</h5>
         {{ event.start_date }} - {{ event.end_date }}
       </div>
       <div class="col-6">
-        <button class="btn btn-primary">{% trans 'Get ticket' %}</button>
+        <div  hx-get="{% url 'events:actions-for-event' event.pk %}"
+             hx-trigger="load" hx-target="this"></div>
       </div>
     </div>
   {% endfor %}
