@@ -1,12 +1,15 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
+from ganexa_event_manager.events.forms import TicketForm
 from ganexa_event_manager.events.models import Event, Ticket
 
-import logging
-
 logger = logging.getLogger(__name__)
+
+
 @login_required
 def get_events(request):
     template_name = 'events/partials/events_for_user.html'
@@ -15,11 +18,18 @@ def get_events(request):
     response = render(request, template_name, context)
     return response
 
+
 @login_required
 def get_event_buttons(request, event_id):
     template_name = 'events/partials/event_buttons.html'
+    try:
+        event = Event.objects.get(id=event_id)
+    except Event.DoesNotExist:
+        event = None
+
     tickets = Ticket.objects.filter(owner=request.user, event__id=event_id)
     context = dict()
+    context['event'] = event
     if tickets.count() == 0:
         context['ticket'] = None
     elif tickets.count() == 1:
@@ -29,5 +39,14 @@ def get_event_buttons(request, event_id):
         logger.warning(msg)
         context['ticket'] = None
         context['error'] = msg
+    response = render(request, template_name, context)
+    return response
+
+
+@login_required
+def ticket_form_view(request, event_id):
+    template_name = 'events/partials/ticket_form.html'
+    form = TicketForm()
+    context = {'form': form}
     response = render(request, template_name, context)
     return response

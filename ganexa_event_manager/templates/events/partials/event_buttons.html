@@ -7,7 +7,10 @@
       {% if ticket %}
         <button class="btn btn-primary">{% trans 'View ticket' %}</button>
       {% else %}
-        <button class="btn btn-primary">{% trans 'Get ticket' %}</button>
+        <button class="btn btn-primary" hx-get="{% url 'events:ticket-create' event.id %}"
+                hx-trigger="click" hx-target="#event-id-{{ event.id }}" hx-swap="afterend">
+          {% trans 'Get ticket' %}
+        </button>
       {% endif %}
     </div>
   </div>
