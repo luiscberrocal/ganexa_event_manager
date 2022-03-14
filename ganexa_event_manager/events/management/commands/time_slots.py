@@ -7,7 +7,7 @@ from ganexa_event_manager.events.models import Event
 
 class Command(BaseCommand):
     """
-        $ python manage.py time_slots -e 1 -d 2022-03-14 -t 07:15 -du 1 -sc 9 -m 110
+        $ python manage.py time_slots --event-id=1 -d 2022-03-14 -t 08:00 --duration=1 -slot-count=8 -m 100
     """
 
     def add_arguments(self, parser):

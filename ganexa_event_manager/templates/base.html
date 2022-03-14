@@ -107,7 +107,19 @@
   {% endif %}
 
   {% block content %}
-    <p>Use this document as a way to quick start any new project.</p>
+    <h2>{% trans "Welcome to our events portal" %}</h2>
+    {% if request.user.is_authenticated %}
+      <p>My data</p>
+    {% else %}
+      <div class="row">
+        <div class="col-6">
+          <a href="{% url 'account_login' %}" class="btn btn-primary">{% trans 'Sign In' %}</a>
+        </div>
+        <div class="col-6">
+          <a href="{% url 'account_signup' %}" class="btn btn-primary">{% trans 'Sign Up' %}</a>
+        </div>
+      </div>
+    {% endif %}
   {% endblock content %}
 
 </div> <!-- /container -->
