@@ -1,18 +1,20 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 {% block content %}
-<div class="row">
-  <div class="col-12">
-    <h5>{% trans 'Select time slot for event' %}</h5>
-    <form class="form-horizontal" method="post" action="">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <div class="control-group">
-        <div class="controls">
-          <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+  <div class="row" id="event-form-row-{{ event.id }}">
+    <div class="col-12">
+      <h5>{% trans 'Select time slot for event' %}</h5>
+      <form class="form-horizontal" method="post" action="" hx-post="{% url 'events:ticket-create' event.id %}"
+            hx-target="#event-form-row-{{ event.id }}"
+      >
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
 {% endblock %}

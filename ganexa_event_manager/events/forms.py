@@ -19,8 +19,8 @@ class TicketForm(forms.ModelForm):
         )
 
     def __init__(self, *args, **kwargs):
-        current_event = kwargs.pop('event')
-        current_owner = kwargs.pop('owner')
+        current_event = kwargs.pop('event', None)
+        current_owner = kwargs.pop('owner', None)
         super(TicketForm, self).__init__(*args, **kwargs)
         self.fields['event'].initial = current_event
         self.fields['owner'].initial = current_owner

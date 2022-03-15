@@ -1,6 +1,7 @@
 import logging
 
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -45,12 +46,20 @@ def get_event_buttons(request, event_id):
 
 @login_required
 def ticket_form_view(request, event_id):
-    template_name = 'events/partials/ticket_form.html'
-    try:
-        event = Event.objects.get(id=event_id)
-    except Event.DoesNotExist:
-        event = None
-    form = TicketForm(event=event, owner=request.user)
-    context = {'form': form}
-    response = render(request, template_name, context)
-    return response
+    if request.method == 'GET':
+        template_name = 'events/partials/ticket_form.html'
+        try:
+            event = Event.objects.get(id=event_id)
+        except Event.DoesNotExist:
+            event = None
+        form = TicketForm(event=event, owner=request.user)
+        context = {'form': form, 'event': event}
+        response = render(request, template_name, context)
+        return response
+    if request.method == 'POST':
+        form = TicketForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('')
+        else:
+            return 'Error'
