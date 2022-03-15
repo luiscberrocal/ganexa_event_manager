@@ -37,7 +37,10 @@ class TimeSlot(TimeStampedModel):
     max_tickets = models.IntegerField(_('Max tickets'))
 
     def __str__(self):
-        return f'{self.event.name} {self.start_time}-{self.end_time}'
+        date = self.start_time.strftime('%d-%b-%y')
+        start_time = self.start_time.strftime('%H:%M')
+        end_time = self.end_time.strftime('%H:%M')
+        return f'{date} {start_time}-{end_time}'
 
     class Meta:
         ordering = ('start_time',)
