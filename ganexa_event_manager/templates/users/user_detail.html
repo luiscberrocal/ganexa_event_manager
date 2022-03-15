@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
@@ -10,7 +11,7 @@
       <div class="col-sm-12">
 
         <h2>{{ object.first_name }} {{ object.last_name }}</h2>
-        <p>{{ object.username }}</p>
+        <p>{% trans 'User' %}: {{ object.username }}</p>
       </div>
     </div>
 
@@ -25,7 +26,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="container" id="events" hx-get="{% url 'events:events-for-user' %}" hx-target="#events"
-                 hx-trigger="load">
+                 hx-trigger="load" hx-swap-oob="true">
 
             </div>
           </div>
