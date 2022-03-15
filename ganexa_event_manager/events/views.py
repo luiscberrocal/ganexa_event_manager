@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-from ganexa_event_manager.events.forms import TicketForm
-from ganexa_event_manager.events.models import Event, Ticket
+from .forms import TicketForm
+from .models import Event, Ticket
 
 logger = logging.getLogger(__name__)
 
@@ -65,3 +65,18 @@ def ticket_form_view(request, event_id):
             return response
         else:
             return HttpResponse('Error')
+
+
+@login_required
+def delete_ticket_view(request, ticket_id):
+    try:
+        ticket = Ticket.objects.get(id=ticket_id)
+    except Ticket.DoesNotExist:
+        logger.error(f'Not ticket for id {ticket_id}')
+    if ticket.owner == request.user:
+        event = ticket.event
+        ticket.delete()
+        response = get_event_buttons(request, event.id)
+        return response
+    else:
+        logger.error('You cannot delete a ticket that you do not own')
