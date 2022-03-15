@@ -18,6 +18,15 @@ class TicketForm(forms.ModelForm):
             'time_slot',
         )
 
+    def __init__(self, *args, **kwargs):
+        current_event = kwargs.pop('event')
+        current_owner = kwargs.pop('owner')
+        super(TicketForm, self).__init__(*args, **kwargs)
+        self.fields['event'].initial = current_event
+        self.fields['owner'].initial = current_owner
+        self.fields['event'].widget = forms.HiddenInput()
+        self.fields['owner'].widget = forms.HiddenInput()
+
     def save(self, commit=True):
         # first_name = self.cleaned_data.pop('first_name')
         # last_name = self.cleaned_data.pop('last_name')

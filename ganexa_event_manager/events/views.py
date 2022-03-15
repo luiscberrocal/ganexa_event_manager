@@ -46,7 +46,11 @@ def get_event_buttons(request, event_id):
 @login_required
 def ticket_form_view(request, event_id):
     template_name = 'events/partials/ticket_form.html'
-    form = TicketForm()
+    try:
+        event = Event.objects.get(id=event_id)
+    except Event.DoesNotExist:
+        event = None
+    form = TicketForm(event=event, owner=request.user)
     context = {'form': form}
     response = render(request, template_name, context)
     return response
