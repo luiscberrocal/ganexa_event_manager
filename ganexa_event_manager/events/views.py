@@ -60,6 +60,8 @@ def ticket_form_view(request, event_id):
         form = TicketForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('')
+            ticket = form.instance
+            response = get_event_buttons(request, ticket.event.id)
+            return response
         else:
-            return 'Error'
+            return HttpResponse('Error')
