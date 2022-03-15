@@ -5,9 +5,13 @@
   <div class="row" id="event-actions-{{ event.id }}">
     <div class="col-12">
       {% if ticket %}
-        <button class="btn btn-primary">{% trans 'View ticket' %}</button>
+        <button class="btn btn-primary" hx-get="{% url 'events:ticket-details' ticket.id %}"
+                hx-trigger="click" hx-target="#event-id-{{ event.id }}"
+                hx-swap="afterend">
+          {% trans 'View ticket' %}
+        </button>
         <button class="btn btn-danger" hx-delete="{% url 'events:ticket-delete' ticket.id %}"
-        hx-target="#event-actions-{{ event.id }}">
+                hx-target="#event-actions-{{ event.id }}">
           {% trans 'Delete ticket' %}
         </button>
       {% else %}
