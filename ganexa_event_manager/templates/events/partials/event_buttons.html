@@ -2,16 +2,19 @@
 {% load i18n %}
 
 {% block content %}
-  <div class="row" id="event-actions-{{ event.id }}">
+  <div class="row" id="event-actions-{{ event.id }}" >
     <div class="col-12">
       {% if ticket %}
         <button class="btn btn-primary" hx-get="{% url 'events:ticket-details' ticket.id %}"
                 hx-trigger="click" hx-target="#event-id-{{ event.id }}"
-                hx-swap="afterend">
+                hx-swap="afterend" x-show="!ticketDisplayed{{ event.id }}"
+                @click="ticketDisplayed{{ event.id }} = true">
           {% trans 'View ticket' %}
         </button>
+        <button class="btn btn-primary" x-show="ticketDisplayed{{ event.id }}"
+                @click="ticketDisplayed{{ event.id }} = false">{% trans 'Hide Ticket' %}</button>
         <button class="btn btn-danger" hx-delete="{% url 'events:ticket-delete' ticket.id %}"
-                hx-target="#event-actions-{{ event.id }}">
+                hx-target="#event-actions-{{ event.id }}" @click="ticketDisplayed{{ event.id }} = false">
           {% trans 'Delete ticket' %}
         </button>
       {% else %}
