@@ -7,15 +7,21 @@
   </div>
 </div>
 {% for event in events %}
-  <div class="row" id="event-id-{{ event.id }}"
-       x-data="{ticketDisplayed{{ event.id }}: false, dummy{{ event.id }}: 'Dummy text {{ event.id }}'}">
-    <div class="col-8">
-      <h5>{{ event.name }}</h5>
-      {{ event.start_date }} - {{ event.end_date }}
-    </div>
-    <div class="col-4">
-      <div hx-get="{% url 'events:actions-for-event' event.pk %}"
-           hx-trigger="load" hx-target="this" id="event-actions-{{ event.id }}"></div>
+  <div class="row">
+    <div class="col-12" id="event-id-{{ event.id }}"
+         x-data="{ticketDisplayed{{ event.id }}: false, dummy{{ event.id }}: 'Dummy text {{ event.id }}'}">
+      <div  class="row">
+        <div class="col-8">
+          <h5>{{ event.name }}</h5>
+          {{ event.start_date }} - {{ event.end_date }}
+        </div>
+        <div class="col-4">
+          <div hx-get="{% url 'events:actions-for-event' event.pk %}"
+               hx-trigger="load" hx-target="this" id="event-actions-{{ event.id }}"></div>
+        </div>
+        <div class="row" id="ticket-target-{{ event.id }}">
+        </div>
+      </div>
     </div>
   </div>
 {% endfor %}

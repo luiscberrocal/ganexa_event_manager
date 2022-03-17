@@ -4,11 +4,11 @@
 {% block content %}
   <div class="row" id="event-actions-{{ event.id }}">
     <div class="col-12">
-    <span x-text="dummy{{ event.id }}"></span>
+      <span x-text="ticketDisplayed{{ event.id }}"></span>
       {% if ticket %}
         <button class="btn btn-primary" hx-get="{% url 'events:ticket-details' ticket.id %}"
-                hx-trigger="click" hx-target="#event-id-{{ event.id }}"
-                hx-swap="afterend" x-show="!ticketDisplayed{{ event.id }}"
+                hx-trigger="click" hx-target="#ticket-target-{{ event.id }}"
+                hx-swap="outerHTML" x-show="!ticketDisplayed{{ event.id }}"
                 @click="ticketDisplayed{{ event.id }} = true">
           {% trans 'View ticket' %}
         </button>

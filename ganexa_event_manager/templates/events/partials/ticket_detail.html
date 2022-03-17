@@ -1,6 +1,6 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
-<div class="row" id="ticket-{{ ticket.id }}">
+<div class="row" id="ticket-{{ ticket.id }}" x-show="ticketDisplayed{{ ticket.event.id }}">
   <div class="col-12">
     <h5>{% trans 'Ticket' %}</h5>
     <div class="row">
