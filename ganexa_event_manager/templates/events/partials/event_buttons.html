@@ -4,7 +4,6 @@
 {% block content %}
   <div class="row" id="event-actions-{{ event.id }}">
     <div class="col-12">
-      <span x-text="ticketDisplayed{{ event.id }}"></span>
       {% if ticket %}
         <button class="btn btn-primary" hx-get="{% url 'events:ticket-details' ticket.id %}"
                 hx-trigger="click" hx-target="#ticket-target-{{ event.id }}"

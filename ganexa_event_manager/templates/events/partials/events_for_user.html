@@ -9,7 +9,7 @@
 {% for event in events %}
   <div class="row">
     <div class="col-12" id="event-id-{{ event.id }}"
-         x-data="{ticketDisplayed{{ event.id }}: false, dummy{{ event.id }}: 'Dummy text {{ event.id }}'}">
+         x-data="{ticketDisplayed{{ event.id }}: false">
       <div  class="row">
         <div class="col-8">
           <h5>{{ event.name }}</h5>
