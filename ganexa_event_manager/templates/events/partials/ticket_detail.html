@@ -1,30 +1,27 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
-
-{% block content %}
-  <div class="row">
-    <div class="col-12">
-      <h5>{% trans 'Ticket' %}</h5>
-      <div class="row">
-        <div class="col-6">
-          <p>{% trans 'Event' %}: {{ ticket.event.name }}</p>
-        </div>
-        <div class="col-6">
-          <p>{% trans 'Date' %}: {{ ticket.time_slot.start_time }}</p>
-        </div>
+<div class="row" id="ticket-{{ ticket.id }}" x-show="ticketDisplayed{{ ticket.event.id }}">
+  <div class="col-12">
+    <h5>{% trans 'Ticket' %}</h5>
+    <div class="row">
+      <div class="col-6">
+        <p>{% trans 'Event' %}: {{ ticket.event.name }}</p>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <p>{% trans 'Time slot' %}: {{ ticket.time_slot.start_time }} - {{ ticket.time_slot.end_time }}</p>
-        </div>
+      <div class="col-6">
+        <p>{% trans 'Date' %}: {{ ticket.time_slot.start_time }}</p>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <p>{% trans 'Owner' %}: {{ ticket.owner.first_name }} {{ ticket.owner.last_name }}</p>
-          <p>{% trans 'Email' %}: {{ ticket.owner.email }}</p>
-          <p>{% trans 'User' %}: {{ ticket.owner.username }}</p>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p>{% trans 'Time slot' %}: {{ ticket.time_slot.start_time }} - {{ ticket.time_slot.end_time }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p>{% trans 'Owner' %}: {{ ticket.owner.first_name }} {{ ticket.owner.last_name }}</p>
+        <p>{% trans 'Email' %}: {{ ticket.owner.email }}</p>
+        <p>{% trans 'User' %}: {{ ticket.owner.username }}</p>
       </div>
     </div>
   </div>
-{% endblock %}
+</div>

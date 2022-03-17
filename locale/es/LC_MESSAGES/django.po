@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-10 19:33-0500\n"
+"POT-Creation-Date: 2022-03-17 07:30-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,51 +17,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ganexa_event_manager/events/models.py:9
+#: config/settings/base.py:40
+msgid "English"
+msgstr ""
+
+#: config/settings/base.py:41
+msgid "Spanish"
+msgstr ""
+
+#: config/urls.py:14
+msgid "Ganexa Event Manager Admin v{}"
+msgstr ""
+
+#: config/urls.py:15
+msgid "Gaanexa Event Manager Portal v{}"
+msgstr ""
+
+#: config/urls.py:16
+msgid "Welcome to Ganexa Event Manager"
+msgstr ""
+
+#: ganexa_event_manager/events/apps.py:8
+#: ganexa_event_manager/templates/events/partials/events_for_user.html:6
+msgid "Events"
+msgstr "Eventos"
+
+#: ganexa_event_manager/events/models.py:12
 msgid "Name"
 msgstr "Nombre"
 
-#: ganexa_event_manager/events/models.py:10
+#: ganexa_event_manager/events/models.py:13
 msgid "Start date"
 msgstr "Fecha de inicio"
 
-#: ganexa_event_manager/events/models.py:11
+#: ganexa_event_manager/events/models.py:14
 msgid "End date"
 msgstr "Fecha final"
 
-#: ganexa_event_manager/events/models.py:12
+#: ganexa_event_manager/events/models.py:15
 msgid "Max tickets per day"
 msgstr "Maximo número de tíquetes por día"
 
-#: ganexa_event_manager/events/models.py:19
-#: ganexa_event_manager/events/models.py:32
+#: ganexa_event_manager/events/models.py:34
+#: ganexa_event_manager/events/models.py:50
+#: ganexa_event_manager/templates/events/partials/ticket_detail.html:8
 msgid "Event"
 msgstr "Evento"
 
-#: ganexa_event_manager/events/models.py:20
+#: ganexa_event_manager/events/models.py:35
 msgid "Start time"
 msgstr "Hora de inicio"
 
-#: ganexa_event_manager/events/models.py:21
+#: ganexa_event_manager/events/models.py:36
 msgid "End time"
 msgstr "Hora final"
 
-#: ganexa_event_manager/events/models.py:22
+#: ganexa_event_manager/events/models.py:37
 msgid "Max tickets"
 msgstr "Máxmio número de tiquetes"
 
-#: ganexa_event_manager/events/models.py:33
+#: ganexa_event_manager/events/models.py:51
+#: ganexa_event_manager/templates/events/partials/ticket_detail.html:21
 msgid "Owner"
 msgstr "Dueño"
 
-#: ganexa_event_manager/events/models.py:35
+#: ganexa_event_manager/events/models.py:53
+#: ganexa_event_manager/templates/events/partials/ticket_detail.html:16
 msgid "Time slot"
 msgstr "Espacio de tiempo"
-
-#: ganexa_event_manager/events/models.py:39
-#, python-brace-format
-msgid "Ticket for {self.owner.email} for {self.time_slot.start_time}"
-msgstr "Tiquete  de {self.owner.email} para {self.time_slot.start_time}"
 
 #: ganexa_event_manager/templates/account/account_inactive.html:5
 #: ganexa_event_manager/templates/account/account_inactive.html:8
@@ -157,6 +180,7 @@ msgstr ""
 #: ganexa_event_manager/templates/account/login.html:11
 #: ganexa_event_manager/templates/account/login.html:56
 #: ganexa_event_manager/templates/base.html:88
+#: ganexa_event_manager/templates/base.html:116
 msgid "Sign In"
 msgstr ""
 
@@ -268,6 +292,7 @@ msgstr ""
 #: ganexa_event_manager/templates/account/signup.html:9
 #: ganexa_event_manager/templates/account/signup.html:19
 #: ganexa_event_manager/templates/base.html:83
+#: ganexa_event_manager/templates/base.html:119
 msgid "Sign Up"
 msgstr ""
 
@@ -325,6 +350,57 @@ msgstr ""
 msgid "My Profile"
 msgstr ""
 
+#: ganexa_event_manager/templates/base.html:110
+msgid "Welcome to our events portal"
+msgstr ""
+
+#: ganexa_event_manager/templates/events/partials/event_buttons.html:12
+msgid "View ticket"
+msgstr "Mostrar tiquete"
+
+#: ganexa_event_manager/templates/events/partials/event_buttons.html:16
+msgid "Hide Ticket"
+msgstr "Esconder tiquete"
+
+#: ganexa_event_manager/templates/events/partials/event_buttons.html:20
+msgid "Delete ticket"
+msgstr "Borrar tiquete"
+
+#: ganexa_event_manager/templates/events/partials/event_buttons.html:25
+#, fuzzy
+#| msgid "Max tickets"
+msgid "Get ticket"
+msgstr "Máxmio número de tiquetes"
+
+#: ganexa_event_manager/templates/events/partials/ticket_detail.html:5
+msgid "Ticket"
+msgstr "Tiquete"
+
+#: ganexa_event_manager/templates/events/partials/ticket_detail.html:11
+msgid "Date"
+msgstr "Fecha"
+
+#: ganexa_event_manager/templates/events/partials/ticket_detail.html:22
+msgid "Email"
+msgstr ""
+
+#: ganexa_event_manager/templates/events/partials/ticket_detail.html:23
+#: ganexa_event_manager/templates/users/user_detail.html:14
+msgid "User"
+msgstr ""
+
+#: ganexa_event_manager/templates/events/partials/ticket_form.html:6
+msgid "Select time slot for event"
+msgstr ""
+
+#: ganexa_event_manager/templates/events/partials/ticket_form.html:14
+msgid "Save"
+msgstr ""
+
+#: ganexa_event_manager/templates/events/partials/ticket_form.html:15
+msgid "Cancel"
+msgstr ""
+
 #: ganexa_event_manager/users/admin.py:18
 msgid "Personal info"
 msgstr ""
@@ -341,10 +417,22 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: ganexa_event_manager/users/forms.py:25
+#: ganexa_event_manager/users/forms.py:29
 #: ganexa_event_manager/users/tests/test_forms.py:39
 msgid "This username has already been taken."
 msgstr ""
+
+#: ganexa_event_manager/users/forms.py:41
+#: ganexa_event_manager/users/forms.py:44
+#: ganexa_event_manager/users/models.py:16
+msgid "First name"
+msgstr "Primer nombre"
+
+#: ganexa_event_manager/users/forms.py:48
+#: ganexa_event_manager/users/forms.py:51
+#: ganexa_event_manager/users/models.py:17
+msgid "Last name"
+msgstr "Apellido"
 
 #: ganexa_event_manager/users/models.py:15
 msgid "Name of User"
@@ -353,3 +441,7 @@ msgstr ""
 #: ganexa_event_manager/users/views.py:25
 msgid "Information successfully updated"
 msgstr ""
+
+#, python-brace-format
+#~ msgid "Ticket for {self.owner.email} for {self.time_slot.start_time}"
+#~ msgstr "Tiquete  de {self.owner.email} para {self.time_slot.start_time}"

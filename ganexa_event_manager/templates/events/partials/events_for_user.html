@@ -1,22 +1,28 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 
-{% block content %}
+<div class="row">
+  <div class="col-12">
+    <h4>{% trans "Events" %}</h4>
+  </div>
+</div>
+{% for event in events %}
   <div class="row">
-    <div class="col-12">
-      <h4>{% trans "Events" %}</h4>
+    <div class="col-12" id="event-id-{{ event.id }}"
+         x-data="{ticketDisplayed{{ event.id }}: false}">
+      <div class="row" id="eventi-info-{{ event.id }}">
+        <div class="col-8">
+          <h5>{{ event.name }}</h5>
+          {{ event.start_date }} - {{ event.end_date }}
+        </div>
+        <div class="col-4">
+          <div hx-get="{% url 'events:actions-for-event' event.pk %}"
+               hx-trigger="load" hx-target="this" id="event-actions-{{ event.id }}"></div>
+        </div>
+      </div>
+      <div class="row" id="ticket-target-{{ event.id }}">
+      </div>
     </div>
   </div>
-  {% for event in events %}
-    <div class="row" id="event-id-{{ event.id }}">
-      <div class="col-8">
-        <h5>{{ event.name }}</h5>
-        {{ event.start_date }} - {{ event.end_date }}
-      </div>
-      <div class="col-4">
-        <div  hx-get="{% url 'events:actions-for-event' event.pk %}"
-             hx-trigger="load" hx-target="this" id="event-actions-{{ event.id }}"></div>
-      </div>
-    </div>
-  {% endfor %}
-{% endblock %}
+{% endfor %}
+
