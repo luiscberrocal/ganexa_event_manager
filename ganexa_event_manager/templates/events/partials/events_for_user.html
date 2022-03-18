@@ -16,8 +16,10 @@
           {{ event.start_date }} - {{ event.end_date }}
         </div>
         <div class="col-4">
-          <div hx-get="{% url 'events:actions-for-event' event.pk %}"
-               hx-trigger="load" hx-target="this" id="event-actions-{{ event.id }}"></div>
+          {% if request.user.is_authenticated %}
+            <div hx-get="{% url 'events:actions-for-event' event.pk %}"
+                 hx-trigger="load" hx-target="this" id="event-actions-{{ event.id }}"></div>
+          {% endif %}
         </div>
       </div>
       <div class="row" id="ticket-target-{{ event.id }}">
