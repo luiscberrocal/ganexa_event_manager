@@ -35,7 +35,7 @@ msgstr ""
 
 #: config/urls.py:16
 msgid "Welcome to Ganexa Event Manager"
-msgstr ""
+msgstr "Bienvenido al Administrador de Eventos de Ganexa"
 
 #: ganexa_event_manager/events/apps.py:8
 #: ganexa_event_manager/templates/events/partials/events_for_user.html:6
@@ -352,7 +352,7 @@ msgstr ""
 
 #: ganexa_event_manager/templates/base.html:110
 msgid "Welcome to our events portal"
-msgstr ""
+msgstr "Bienvenido a nuetros portal de eventos"
 
 #: ganexa_event_manager/templates/events/partials/event_buttons.html:12
 msgid "View ticket"
@@ -367,8 +367,6 @@ msgid "Delete ticket"
 msgstr "Borrar tiquete"
 
 #: ganexa_event_manager/templates/events/partials/event_buttons.html:25
-#, fuzzy
-#| msgid "Max tickets"
 msgid "Get ticket"
 msgstr "Máxmio número de tiquetes"
 

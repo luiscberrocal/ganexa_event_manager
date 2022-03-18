@@ -11,7 +11,7 @@ from .models import Event, Ticket
 logger = logging.getLogger(__name__)
 
 
-@login_required
+# @login_required
 def get_events(request):
     template_name = 'events/partials/events_for_user.html'
     events = Event.objects.all()
@@ -21,7 +21,7 @@ def get_events(request):
 
 
 @login_required
-def get_event_buttons(request, event_id):
+def get_event_actions(request, event_id):
     template_name = 'events/partials/event_buttons.html'
     try:
         event = Event.objects.get(id=event_id)
@@ -61,7 +61,7 @@ def ticket_form_view(request, event_id):
         if form.is_valid():
             form.save()
             ticket = form.instance
-            response = get_event_buttons(request, ticket.event.id)
+            response = get_event_actions(request, ticket.event.id)
             return response
         else:
             return HttpResponse('Error')
@@ -76,7 +76,7 @@ def delete_ticket_view(request, ticket_id):
     if ticket.owner == request.user:
         event = ticket.event
         ticket.delete()
-        response = get_event_buttons(request, event.id)
+        response = get_event_actions(request, event.id)
         return response
     else:
         logger.error('You cannot delete a ticket that you do not own')
