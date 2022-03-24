@@ -338,3 +338,6 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+STANDARD_GOLF_GLUBS = ['Drive 1', 'Drive 3', 'Sand', 'Wedge', 'Iron 4', 'Iron 5', 'Iron 6', 'Iron 7',
+                       'Iron 8', 'Iron 9', 'Putter']

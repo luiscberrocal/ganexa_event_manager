@@ -1,5 +1,6 @@
 import string
 
+from django.conf import settings
 from factory import Iterator
 from factory import LazyAttribute
 from factory import SubFactory
@@ -28,7 +29,7 @@ class GolfClubFactory(DjangoModelFactory):
         model = GolfClub
 
     player = SubFactory(UserFactory)
-    name = LazyAttribute(lambda x: faker.text(max_nb_chars=30))
+    name = Iterator[settings.STANDARD_GOLF_GLUBS]
     order = 1
     # order = PositiveSmallIntegerField We do not support this field type
 
