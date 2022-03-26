@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 from model_utils.models import TimeStampedModel
 
+from ganexa_event_manager.golf.managers import GolfClubManager
+
 
 class GolfCourse(TimeStampedModel):
     name = models.CharField(_('Name'), max_length=80)
@@ -19,6 +21,8 @@ class GolfClub(TimeStampedModel):
                                on_delete=models.CASCADE, related_name='golf_clubs')
     name = models.CharField(_('Name'), max_length=30)
     order = models.PositiveSmallIntegerField(_('Order'))
+
+    objects = GolfClubManager()
 
     def __str__(self):
         return self.name
