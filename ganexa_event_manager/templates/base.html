@@ -1,4 +1,6 @@
-{% load static i18n %}<!DOCTYPE html>
+{% load static i18n %}
+{% load golf_tags %}
+<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -124,6 +126,14 @@
           <a href="{% url 'account_signup' %}" class="btn btn-primary">{% trans 'Sign Up' %}</a>
         </div>
       </div>
+    {% else %}
+      {% if request.user|is_golfer %}
+        <div class="row">
+          <div class="col-12">
+            <a href="{% url 'golf:range-hits' %}" class="btn btn-primary">{% trans 'Golf' %}</a>
+          </div>
+        </div>
+      {% endif %}
     {% endif %}
   {% endblock content %}
 
