@@ -85,6 +85,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "ganexa_event_manager.users",
     "ganexa_event_manager.events",
+    "ganexa_event_manager.golf",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -337,3 +338,6 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+STANDARD_GOLF_GLUBS = ['Drive 1', 'Drive 3', 'Sand', 'Wedge', 'Iron 4', 'Iron 5', 'Iron 6', 'Iron 7',
+                       'Iron 8', 'Iron 9', 'Putter']

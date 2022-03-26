@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Summit Range</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <form action="" class="m-4">
+          <label for="club" class="form-label">Club</label>
+          <select name="club" id="club" class="form-select">
+            {% for golf_club in golf_clubs %}
+              <option value="{{ golf_club.pk }}">{{ golf_club.name }}</option>
+            {% endfor %}
+          </select>
+          <div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Solid
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Above
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="second" id="second">
+              <label class="form-check-label" for="second">
+                Early drop
+              </label>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-primary">50 yards</button>
+            <button class="btn btn-primary">100 yards</button>
+            <button class="btn btn-primary">150 yards</button>
+            <button class="btn btn-primary">200 yards</button>
+            <button class="btn btn-primary">250 yards</button>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="mb-3">
+                <label for="distance" class="form-label">Distance</label>
+                <input type="number" class="form-control" id="distance" placeholder="Distance in yards">
+              </div>
+            </div>
+            <div class="col-4">
+              <button class="btn-primary h-100 w-25">- 10 yards</button>
+              <button class="btn-primary h-100 w-25">+ 10 yards</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <h3>Stats</h3>
+      </div>
+    </div>
+  </div>
+{% endblock %}
