@@ -23,7 +23,8 @@
       {{ hit.created|date:"H:i" }}
     </div>
     <div class="col-2">
-      <button class="btn btn-danger">
+      <button class="btn btn-danger" hx-delete="{% url 'golf:player-hit-delete' hit.pk %}"
+              hx-target="#stats-id" hx-trigger="click">
         <i class="bi bi-trash3-fill"></i>
       </button>
     </div>
