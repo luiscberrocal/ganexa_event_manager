@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% for hit in hits %}
+  <div class="row">
+    <div class="col-12">
+     {{ hit.distance }}
+    </div>
+  </div>
+{% endfor %}

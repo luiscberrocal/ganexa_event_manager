@@ -10,7 +10,8 @@
     </div>
     <div class="row">
       <div class="col-md-6 col-xs-12" id="range-hit-form">
-        <form action="" class="m-4">
+        <form action="" class="m-4" hx-post="{% url 'golf:save-hit' %}" hx-target="#stats-id"
+              x-data="{distance: null }">
           <div class="form-group row">
             <label for="club" class="form-label col-md-12">Club</label>
             <select name="club" id="club" class="form-select col-md-12">
@@ -20,22 +21,23 @@
             </select>
           </div>
           <div class="form-group row">
-            <label for="distance" class="form-label col-md-12">Distance</label>
+            <label for="distance" class="form-label col-md-12">{% trans 'Distance' %}</label>
             <div class="col-md-12 mb-2">
-              <button class="btn btn-primary">50</button>
-              <button class="btn btn-primary">100</button>
-              <button class="btn btn-primary">150</button>
-              <button class="btn btn-primary">200</button>
-              <button class="btn btn-primary">250</button>
+              <button class="btn btn-primary" @click="distance=50">50</button>
+              <button class="btn btn-primary" @click="distance=100">100</button>
+              <button class="btn btn-primary" @click="distance=150">150</button>
+              <button class="btn btn-primary" @click="distance=200">200</button>
+              <button class="btn btn-primary" @click="distance=250">250</button>
             </div>
             <div class="col-md-12">
               <div class="row">
                 <div class="col-8">
-                  <input type="number" class="form-control" id="distance" placeholder="Distance in yards">
+                  <input type="number" class="form-control" id="distance" name="distance"
+                         placeholder="{% trans 'Distance (yards)' %}" x-model="distance">
                 </div>
                 <div class="col-4">
-                  <button class="btn-primary">-10</button>
-                  <button class="btn-primary">+10</button>
+                  <button class="btn-primary" @click="distance-=10">-10</button>
+                  <button class="btn-primary" @click="distance+=10">+10</button>
                 </div>
               </div>
             </div>
@@ -45,22 +47,23 @@
             <div class="col-12" id="directions">
               {% for direction in directions %}
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="direction-{{ direction.0 }}"
-                         id="direction-id-{{ direction.0 }}">
+                  <input class="form-check-input" type="radio" name="direction"
+                         id="direction-id-{{ direction.0 }}" value="{{ direction.0 }}">
                   <label class="form-check-label" for="direction-{{ direction.0 }}">{{ direction.1 }}</label>
                 </div>
               {% endfor %}
             </div>
           </div>
-        <div class="form-group row">
-          <div class="col-12">
-            <button class="btn btn-primary">{% trans 'Save' %}</button>
+          <div class="form-group row">
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit" @click="distance=null">{% trans 'Save' %}</button>
+            </div>
           </div>
-        </div>
         </form>
       </div>
       <div class="col-md-6 col-xs-12">
         <h3>Stats</h3>
+        <div class="container" id="stats-id"></div>
       </div>
     </div>
   </div>

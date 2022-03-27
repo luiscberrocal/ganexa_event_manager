@@ -20,7 +20,7 @@ class GolfCourseAdmin(admin.ModelAdmin):
 
 @admin.register(GolfClub)
 class GolfClubAdmin(admin.ModelAdmin):
-    list_display = ('id', 'created', 'modified', 'player', 'name', 'order')
+    list_display = ('id', 'player', 'name', 'order', 'created', 'modified')
     list_filter = ('created', 'modified', 'player')
     search_fields = ('name',)
 
@@ -29,12 +29,12 @@ class GolfClubAdmin(admin.ModelAdmin):
 class HitClassificationAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        'created',
-        'modified',
         'order',
         'player',
         'name',
         'hit_type',
+        'created',
+        'modified',
     )
     list_filter = ('created', 'modified', 'player')
     search_fields = ('name',)
@@ -44,18 +44,16 @@ class HitClassificationAdmin(admin.ModelAdmin):
 class RangeHitAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        'created',
-        'modified',
         'course',
         'player',
         'club',
         'distance',
         'direction',
         'hit_classification',
-    )
-    list_filter = (
         'created',
         'modified',
+    )
+    list_filter = (
         'course',
         'player',
         'club',
