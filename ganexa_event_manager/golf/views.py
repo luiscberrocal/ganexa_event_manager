@@ -1,7 +1,9 @@
 # Create your views here.
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from ganexa_event_manager.golf.models import GolfClub, RangeHit
+from .models import GolfClub, RangeHit
 
 
 class RangeHitsView(TemplateView):
@@ -14,6 +16,15 @@ class RangeHitsView(TemplateView):
         ctx['directions'] = RangeHit.DIRECTION_CHOICES
 
         return ctx
+
+
+@login_required
+def save_hit_view(request):
+    print(request.POST)
+    template_name = 'golf/partials/stats.html'
+    context = {'hits': RangeHit.objects.all()[:10]}
+    response = render(request, template_name, context)
+    return response
 
 
 range_hits_view = RangeHitsView.as_view()
