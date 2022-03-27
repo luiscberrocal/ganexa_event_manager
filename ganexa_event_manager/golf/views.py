@@ -1,6 +1,7 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 from django.views.generic import TemplateView
 
@@ -19,7 +20,9 @@ class RangeHitsView(TemplateView):
 
         return ctx
 
+
 range_hits_view = RangeHitsView.as_view()
+
 
 @login_required
 def save_hit_view(request):
@@ -33,14 +36,19 @@ def save_hit_view(request):
     else:
         print(form.errors)
     template_name = 'golf/partials/stats.html'
-    context = {'hits': RangeHit.objects.filter(player=request.user)[:10]}
+    today = timezone.now().date()
+    qs = RangeHit.objects.filter(player=request.user, created__startswith=today)
+    context = {'hits': qs[:10], 'hit_count': qs.count()}
     response = render(request, template_name, context)
     return response
+
 
 @login_required
 def list_player_hits_view(request):
     template_name = 'golf/partials/stats.html'
-    context = {'hits': RangeHit.objects.filter(player=request.user)[:10]}
+    today = timezone.now().date()
+    qs = RangeHit.objects.filter(player=request.user, created__startswith=today)
+    context = {'hits': qs[:10], 'hit_count': qs.count()}
     response = render(request, template_name, context)
     return response
 
@@ -55,7 +63,3 @@ def delete_range_hit(request, pk):
     except RangeHit.DoesNotExist:
         pass
     return list_player_hits_view(request)
-
-
-
-
