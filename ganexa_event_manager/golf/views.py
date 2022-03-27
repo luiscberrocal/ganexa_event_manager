@@ -1,6 +1,7 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.views.decorators.http import require_http_methods
 from django.views.generic import TemplateView
 
 from .forms import RangeHitForm
@@ -18,6 +19,7 @@ class RangeHitsView(TemplateView):
 
         return ctx
 
+range_hits_view = RangeHitsView.as_view()
 
 @login_required
 def save_hit_view(request):
@@ -42,4 +44,18 @@ def list_player_hits_view(request):
     response = render(request, template_name, context)
     return response
 
-range_hits_view = RangeHitsView.as_view()
+
+@require_http_methods(['DELETE'])
+@login_required
+def delete_range_hit(request, pk):
+    try:
+        range_hit = RangeHit.objects.get(pk=pk)
+        if range_hit.player == request.user:
+            range_hit.delete()
+    except RangeHit.DoesNotExist:
+        pass
+    return list_player_hits_view(request)
+
+
+
+

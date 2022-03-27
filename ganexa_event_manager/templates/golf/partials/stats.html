@@ -9,10 +9,24 @@
       {{ hit.distance }}
     </div>
     <div class="col-2">
-      {{ hit.direction }}
+      {% if hit.direction == 'L' %}
+        <i class="bi bi-arrow-left-short"></i>
+      {% endif %}
+      {% if hit.direction == 'R' %}
+        <i class="bi bi-arrow-right-short"></i>
+      {% endif %}
+      {% if hit.direction == 'S' %}
+        <i class="bi bi-arrow-up-short"></i>
+      {% endif %}
     </div>
     <div class="col-3">
       {{ hit.created|date:"H:i" }}
+    </div>
+    <div class="col-2">
+      <button class="btn btn-danger" hx-delete="{% url 'golf:player-hit-delete' hit.pk %}"
+              hx-target="#stats-id" hx-trigger="click">
+        <i class="bi bi-trash3-fill"></i>
+      </button>
     </div>
   </div>
 {% endfor %}
