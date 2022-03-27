@@ -72,4 +72,4 @@ class RangeHit(TimeStampedModel):
         return _(f'{self.created} distance: {self.distance} direction: {self.direction}')
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
