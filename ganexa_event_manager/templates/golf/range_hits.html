@@ -56,14 +56,15 @@
           </div>
           <div class="form-group row">
             <div class="col-12">
-              <button class="btn btn-primary" type="submit" @click="distance=null">{% trans 'Save' %}</button>
+              <button class="btn btn-primary" type="submit">{% trans 'Save' %}</button>
             </div>
           </div>
         </form>
       </div>
       <div class="col-md-6 col-xs-12">
         <h3>Stats</h3>
-        <div class="container" id="stats-id"></div>
+        <div class="container" id="stats-id" hx-trigger="load" hx-get="{% url 'golf:player-hits' %}"
+             hx-target="this"></div>
       </div>
     </div>
   </div>

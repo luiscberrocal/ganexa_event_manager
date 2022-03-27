@@ -2,15 +2,17 @@
 {% load i18n %}
 {% for hit in hits %}
   <div class="row">
-  <div class="col-3">
-    {{ hit.club.name }}
-  </div>
+    <div class="col-3">
+      {{ hit.club.name }}
+    </div>
     <div class="col-2">
       {{ hit.distance }}
     </div>
     <div class="col-2">
       {{ hit.direction }}
     </div>
-
+    <div class="col-3">
+      {{ hit.created|date:"H:i" }}
+    </div>
   </div>
 {% endfor %}

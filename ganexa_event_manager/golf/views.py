@@ -24,15 +24,22 @@ def save_hit_view(request):
     form_dict = request.POST.copy()
     form_dict['player'] = request.user
     form_dict['course'] = GolfCourse.objects.first()
+    print(f'>> hit dictionary {form_dict}')
     form = RangeHitForm(data=form_dict)
     if form.is_valid():
         form.save()
     else:
         print(form.errors)
     template_name = 'golf/partials/stats.html'
-    context = {'hits': RangeHit.objects.all()[:10]}
+    context = {'hits': RangeHit.objects.filter(player=request.user)[:10]}
     response = render(request, template_name, context)
     return response
 
+@login_required
+def list_player_hits_view(request):
+    template_name = 'golf/partials/stats.html'
+    context = {'hits': RangeHit.objects.filter(player=request.user)[:10]}
+    response = render(request, template_name, context)
+    return response
 
 range_hits_view = RangeHitsView.as_view()
