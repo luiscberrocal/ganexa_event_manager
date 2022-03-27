@@ -1,5 +1,10 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
+<div class="row">
+  <div class="col-12">
+    <h3>{% trans 'Last 10 Hits today' %} total: {{ hit_count }}</h3>
+  </div>
+</div>
 {% for hit in hits %}
   <div class="row">
     <div class="col-3">
