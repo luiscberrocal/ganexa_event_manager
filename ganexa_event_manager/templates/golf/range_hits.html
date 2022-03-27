@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% load i18n %}
-
 {% block content %}
   <div class="container">
     <div class="row">
@@ -10,53 +9,54 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 col-xs-12">
+      <div class="col-md-6 col-xs-12" id="range-hit-form">
         <form action="" class="m-4">
-          <label for="club" class="form-label">Club</label>
-          <select name="club" id="club" class="form-select">
-            {% for golf_club in golf_clubs %}
-              <option value="{{ golf_club.pk }}">{{ golf_club.name }}</option>
-            {% endfor %}
-          </select>
-          <div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Solid
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-              <label class="form-check-label" for="flexRadioDefault2">
-                Above
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="second" id="second">
-              <label class="form-check-label" for="second">
-                Early drop
-              </label>
-            </div>
+          <div class="form-group row">
+            <label for="club" class="form-label col-md-12">Club</label>
+            <select name="club" id="club" class="form-select col-md-12">
+              {% for golf_club in golf_clubs %}
+                <option value="{{ golf_club.pk }}">{{ golf_club.name }}</option>
+              {% endfor %}
+            </select>
           </div>
-          <div>
-            <button class="btn btn-primary">50 yards</button>
-            <button class="btn btn-primary">100 yards</button>
-            <button class="btn btn-primary">150 yards</button>
-            <button class="btn btn-primary">200 yards</button>
-            <button class="btn btn-primary">250 yards</button>
-          </div>
-          <div class="row">
-            <div class="col-8">
-              <div class="mb-3">
-                <label for="distance" class="form-label">Distance</label>
-                <input type="number" class="form-control" id="distance" placeholder="Distance in yards">
+          <div class="form-group row">
+            <label for="distance" class="form-label col-md-12">Distance</label>
+            <div class="col-md-12 mb-2">
+              <button class="btn btn-primary">50</button>
+              <button class="btn btn-primary">100</button>
+              <button class="btn btn-primary">150</button>
+              <button class="btn btn-primary">200</button>
+              <button class="btn btn-primary">250</button>
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-8">
+                  <input type="number" class="form-control" id="distance" placeholder="Distance in yards">
+                </div>
+                <div class="col-4">
+                  <button class="btn-primary">-10</button>
+                  <button class="btn-primary">+10</button>
+                </div>
               </div>
             </div>
-            <div class="col-4">
-              <button class="btn-primary h-100 w-25">- 10 yards</button>
-              <button class="btn-primary h-100 w-25">+ 10 yards</button>
+          </div>
+          <div class="form-group row">
+            <label for="directions" class="col-12">{% trans "Directions" %}</label>
+            <div class="col-12" id="directions">
+              {% for direction in directions %}
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="direction-{{ direction.0 }}"
+                         id="direction-id-{{ direction.0 }}">
+                  <label class="form-check-label" for="direction-{{ direction.0 }}">{{ direction.1 }}</label>
+                </div>
+              {% endfor %}
             </div>
           </div>
+        <div class="form-group row">
+          <div class="col-12">
+            <button class="btn btn-primary">{% trans 'Save' %}</button>
+          </div>
+        </div>
         </form>
       </div>
       <div class="col-md-6 col-xs-12">
