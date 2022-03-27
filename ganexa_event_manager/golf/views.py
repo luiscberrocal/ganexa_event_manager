@@ -1,7 +1,7 @@
 # Create your views here.
 from django.views.generic import TemplateView
 
-from ganexa_event_manager.golf.models import GolfClub
+from ganexa_event_manager.golf.models import GolfClub, RangeHit
 
 
 class RangeHitsView(TemplateView):
@@ -11,6 +11,7 @@ class RangeHitsView(TemplateView):
         player = self.request.user
         ctx = super(RangeHitsView, self).get_context_data(**kwargs)
         ctx['golf_clubs'] = GolfClub.objects.filter(player=player)
+        ctx['directions'] = RangeHit.DIRECTION_CHOICES
 
         return ctx
 
