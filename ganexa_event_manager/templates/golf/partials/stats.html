@@ -1,9 +1,9 @@
-{% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% load i18n %}
-
-<div class="row">
-  <div class="col-12">
-    Stat 1
+{% for hit in hits %}
+  <div class="row">
+    <div class="col-12">
+     {{ hit.distance }}
+    </div>
   </div>
-</div>
+{% endfor %}

@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from .models import GolfClub, RangeHit
+from .forms import RangeHitForm
+from .models import GolfClub, RangeHit, GolfCourse
 
 
 class RangeHitsView(TemplateView):
@@ -20,7 +21,14 @@ class RangeHitsView(TemplateView):
 
 @login_required
 def save_hit_view(request):
-    print(request.POST)
+    form_dict = request.POST.copy()
+    form_dict['player'] = request.user
+    form_dict['course'] = GolfCourse.objects.first()
+    form = RangeHitForm(data=form_dict)
+    if form.is_valid():
+        form.save()
+    else:
+        print(form.errors)
     template_name = 'golf/partials/stats.html'
     context = {'hits': RangeHit.objects.all()[:10]}
     response = render(request, template_name, context)
