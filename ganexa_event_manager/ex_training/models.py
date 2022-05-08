@@ -25,11 +25,11 @@ class ExerciseProfile(AuditableModel, TimeStampedModel):
                                 related_name='exercise_profile')
     dob = models.DateField(_('Date of birth'), null=True, blank=True)
     weight_units = models.CharField(_('Weight units'), max_length=2, default=WeightUnit.LB,
-                                    choices=[(tag, tag.value) for tag in WeightUnit])
-    weight = models.PositiveSmallIntegerField(_('Weight'))
+                                    choices=[(tag.name, tag.value) for tag in WeightUnit])
+    weight = models.FloatField(_('Weight'))
     height_units = models.CharField(_('Height units'), max_length=2, default=HeightUnit.M,
-                                    choices=[(tag, tag.value) for tag in HeightUnit])
-    height = models.PositiveSmallIntegerField(_('Height'), default=1)
+                                    choices=[(tag.name, tag.value) for tag in HeightUnit])
+    height = models.FloatField(_('Height'), default=1)
     metadata = models.JSONField(_('Metadata'), null=True, blank=True)
 
     def __str__(self):
@@ -71,7 +71,7 @@ class ExerciseSession(AuditableModel, TimeStampedModel):
     exercise = models.ForeignKey(Exercise, verbose_name=_('Exercise'), related_name='exercise_sessions',
                                  on_delete=models.PROTECT)
     units = models.CharField(_('Units'), max_length=2, default=WeightUnit.LB,
-                             choices=[(tag, tag.value) for tag in WeightUnit])
+                             choices=[(tag.name, tag.value) for tag in WeightUnit])
     reps = models.PositiveSmallIntegerField(_('Reps'), default=1)
 
     def __str__(self):
