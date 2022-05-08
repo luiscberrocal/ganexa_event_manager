@@ -6,6 +6,7 @@ volumes:
 
 services:
   django: &django
+    user: $DOCKER_USER
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
