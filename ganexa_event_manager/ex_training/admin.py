@@ -30,6 +30,7 @@ class ExerciseProfileAdmin(AuditableAdminMixin, admin.ModelAdmin):
         'user',
         'dob',
     )
+    list_per_page = 20
 
 
 @admin.register(Exercise)
@@ -52,6 +53,7 @@ class ExerciseAdmin(AuditableAdminMixin, admin.ModelAdmin):
         'machine',
     )
     search_fields = ('name',)
+    list_per_page = 20
 
 
 @admin.register(UserExercise)
@@ -65,6 +67,7 @@ class UserExerciseAdmin(admin.ModelAdmin):
         'modified',
     )
     list_filter = ('created', 'modified', 'user', 'exercise')
+    list_per_page = 20
 
 
 @admin.register(ExerciseSession)
@@ -90,3 +93,4 @@ class ExerciseSessionAdmin(AuditableAdminMixin, admin.ModelAdmin):
         'user',
         'exercise',
     )
+    list_per_page = 20
