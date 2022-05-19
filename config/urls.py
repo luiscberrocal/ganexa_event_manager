@@ -25,6 +25,7 @@ urlpatterns = i18n_patterns(
     # User management
     path("users/", include("ganexa_event_manager.users.urls", namespace="users")),
     path("golf/", include("ganexa_event_manager.golf.urls", namespace="golf")),
+    path("ex-training/", include("ganexa_event_manager.ex_training.urls", namespace="ex-training")),
     path("events/", include("ganexa_event_manager.events.urls", namespace="events")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
