@@ -13,7 +13,7 @@
         <form action="" class="m-4" hx-post="{% url 'golf:save-hit' %}" hx-target="#stats-id"
               x-data="{distance: null }">
           <div class="form-group row">
-            <label for="club" class="form-label col-md-12">Club</label>
+            <label for="club" class="form-label col-md-6">{% trans 'Club' %}</label>
             <select name="club" id="club" class="form-select col-md-12">
               {% for golf_club in golf_clubs %}
                 <option value="{{ golf_club.pk }}">{{ golf_club.name }}</option>

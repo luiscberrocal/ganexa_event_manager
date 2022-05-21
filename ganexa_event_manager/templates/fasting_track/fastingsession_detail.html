@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n fasting_tags %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-3">
+      {% trans 'Start date' %}
+    </div>
+    <div class="col-3">
+      {{ object.start_date }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {% trans 'Target duration' %}
+    </div>
+    <div class="col-3">
+      {{ object.target_duration }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {% trans 'Completed' %}
+    </div>
+    <div class="col-3">
+      {{ object.completed|percentage }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {% trans 'Duration' %}
+    </div>
+    <div class="col-3">
+      {{ object.current_duration|hours }}
+    </div>
+  </div>
+{% endblock %}

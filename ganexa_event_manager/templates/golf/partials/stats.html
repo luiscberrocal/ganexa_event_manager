@@ -6,7 +6,7 @@
   </div>
 </div>
 {% for hit in hits %}
-  <div class="row">
+  <div class="row pb-1">
     <div class="col-3">
       {{ hit.club.name }}
     </div>
@@ -28,7 +28,7 @@
       {{ hit.created|date:"H:i" }}
     </div>
     <div class="col-2">
-      <button class="btn btn-danger" hx-delete="{% url 'golf:player-hit-delete' hit.pk %}"
+      <button class="btn btn-danger btn-sm" hx-delete="{% url 'golf:player-hit-delete' hit.pk %}"
               hx-target="#stats-id" hx-trigger="click">
         <i class="bi bi-trash3-fill"></i>
       </button>

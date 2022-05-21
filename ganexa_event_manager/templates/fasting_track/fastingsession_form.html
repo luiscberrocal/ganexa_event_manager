@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+  {% crispy form %}
+{% endblock %}
+
+{% block inline_javascript %}
+  {{ block.super }}
+  <script>
+  $('#id_start_date').datetimepicker({
+    format: 'yyyy-mm-dd HH:MM:ss'
+});
+  </script>
+{% endblock  %}
+

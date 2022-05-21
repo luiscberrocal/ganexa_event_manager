@@ -1,5 +1,6 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
@@ -15,7 +16,9 @@ class RangeHitsView(TemplateView):
     def get_context_data(self, **kwargs):
         player = self.request.user
         ctx = super(RangeHitsView, self).get_context_data(**kwargs)
-        ctx['golf_clubs'] = GolfClub.objects.filter(player=player)
+
+        golf_clubs = GolfClub.objects.filter(player=player).annotate(average_distance=Avg('range_hits__distance'))
+        ctx['golf_clubs'] = golf_clubs
         ctx['directions'] = RangeHit.DIRECTION_CHOICES
 
         return ctx
@@ -63,3 +66,17 @@ def delete_range_hit(request, pk):
     except RangeHit.DoesNotExist:
         pass
     return list_player_hits_view(request)
+
+
+@require_http_methods(['GET'])
+@login_required
+def golf_club_stats_view(request, pk):
+    player = request.user
+    try:
+        golf_club = GolfClub.objects.get(player=player, pk=pk).annotate(average_distance=Avg('range_hits__distance'))
+        context = {'golf_club': golf_club }
+        template_name = 'golf/partials/golf_club_stats.html'
+        response = render(request, template_name, context)
+        return response
+    except GolfClub.DoesNotExist:
+        pass

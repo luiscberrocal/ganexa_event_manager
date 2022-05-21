@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div id="fast-session-list">
+    {% for session in object_list %}
+      <div class="row">
+        <div class="col-2">
+          {{ session.start_date }}
+        </div>
+        <div class="col-2">
+          {{ session.target_duration }}
+        </div>
+      <div class="col-2">
+        <a href="{% url 'fasting-track:detail-fasting-session' session.id %}" class="btn btn-primary">view</a>
+      </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

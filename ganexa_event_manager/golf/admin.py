@@ -56,6 +56,4 @@ class RangeHitAdmin(admin.ModelAdmin):
     list_filter = (
         'course',
         'player',
-        'club',
-        'hit_classification',
     )

@@ -29,7 +29,7 @@ class GolfClubFactory(DjangoModelFactory):
         model = GolfClub
 
     player = SubFactory(UserFactory)
-    name = Iterator[settings.STANDARD_GOLF_GLUBS]
+    name = Iterator(settings.STANDARD_GOLF_GLUBS)
     order = 1
     # order = PositiveSmallIntegerField We do not support this field type
 
@@ -55,6 +55,6 @@ class RangeHitFactory(DjangoModelFactory):
     course = SubFactory(GolfCourseFactory)
     player = SubFactory(UserFactory)
     club = SubFactory(GolfClubFactory)
-    distance = Iterator[50, 100, 200, 250, 300]
+    distance = Iterator([50, 100, 200, 250, 300])
     direction = Iterator(RangeHit.DIRECTION_CHOICES, getter=lambda x: x[0])
     hit_classification = SubFactory(HitClassificationFactory)

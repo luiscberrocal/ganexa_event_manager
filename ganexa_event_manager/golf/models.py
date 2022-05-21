@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 from model_utils.models import TimeStampedModel
 
-from ganexa_event_manager.golf.managers import GolfClubManager
+from .managers import GolfClubManager
 
 
 class GolfCourse(TimeStampedModel):

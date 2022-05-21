@@ -1,11 +1,12 @@
 version: '3'
 
 volumes:
-  ganexa_event_manager_local_postgres_data: {}
-  ganexa_event_manager_local_postgres_data_backups: {}
+  ganexa_event_manager_local_postgres_data: { }
+  ganexa_event_manager_local_postgres_data_backups: { }
 
 services:
   django: &django
+    user: $DOCKER_USER
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -66,7 +67,7 @@ services:
     depends_on:
       - redis
       - postgres
-    ports: []
+    ports: [ ]
     command: /start-celeryworker
 
   celerybeat:
@@ -76,7 +77,7 @@ services:
     depends_on:
       - redis
       - postgres
-    ports: []
+    ports: [ ]
     command: /start-celerybeat
 
   flower:
