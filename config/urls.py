@@ -25,8 +25,8 @@ urlpatterns = i18n_patterns(
     # User management
     path("users/", include("ganexa_event_manager.users.urls", namespace="users")),
     path("golf/", include("ganexa_event_manager.golf.urls", namespace="golf")),
-    path("ex-training/", include("ganexa_event_manager.ex_training.urls", namespace="ex-training")),
     path("events/", include("ganexa_event_manager.events.urls", namespace="events")),
+    path("fasting/", include("ganexa_event_manager.fasting_track.urls", namespace="fasting-track")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

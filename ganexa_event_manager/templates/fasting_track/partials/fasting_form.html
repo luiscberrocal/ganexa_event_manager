@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+  <div id="the-form" hx-get="{% url 'fasting-track:create-fasting-session' %}">
+    {% crispy form %}
+  </div>
+{% endblock %}
