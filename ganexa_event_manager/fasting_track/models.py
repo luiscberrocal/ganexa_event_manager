@@ -14,8 +14,8 @@ class FastingSession(AuditableModel, TimeStampedModel):
                              on_delete=models.PROTECT)
     start_date = models.DateTimeField(_('Start date'))
     end_date = models.DateTimeField(_('End date'), null=True, blank=True)
-    duration = models.PositiveSmallIntegerField(_('duration'), default=0)
-    target_duration = models.PositiveSmallIntegerField(_('duration'), default=16)
+    duration = models.PositiveSmallIntegerField(_('Duration'), default=0)
+    target_duration = models.PositiveSmallIntegerField(_('Target duration'), default=16)
     comments = models.CharField(_('Comments'), max_length=180, null=True, blank=True)
 
     @property

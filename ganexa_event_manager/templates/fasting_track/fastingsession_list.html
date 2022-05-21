@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div id="fast-session-list">
+    {% for session in object_list %}
+      <div class="row">
+        {{ session }}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

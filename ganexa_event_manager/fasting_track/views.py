@@ -19,6 +19,12 @@ class FastingSessionCreateView(LoginRequiredMixin, CreateView):
     form_class = FastingSessionForm
     success_url = reverse_lazy('fasting-track:list-fasting-session')
 
+    def get_form_kwargs(self):
+        kwargs = super(FastingSessionCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
 
 fasting_session_create_view = FastingSessionCreateView.as_view()
 
