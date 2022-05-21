@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView, DetailView, TemplateView
 
@@ -60,3 +61,13 @@ class FastingSessionDetailView(LoginRequiredMixin, DetailView):
 
 
 fasting_session_detail_view = FastingSessionDetailView.as_view()
+
+
+def advance(request, pk):
+    session = FastingSession.objects.get(id=pk)
+    p_advance = session.current_duration / session.target_duration
+    ctx = {'current_advance': p_advance}
+    template = 'fasting_track/partials/advance.html'
+    response = render(request, template, ctx)
+    return response
+

@@ -22,8 +22,8 @@
     <div class="col-3">
       {% trans 'Advance' %}
     </div>
-    <div class="col-3">
-    
+    <div class="col-3" hx-get="{% url 'fasting-track:advance' object.id %}" hx-trigger="load" hx-target="this">
+
     </div>
   </div>
 {% endblock %}
