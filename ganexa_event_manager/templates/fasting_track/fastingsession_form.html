@@ -5,3 +5,13 @@
 {% block content %}
   {% crispy form %}
 {% endblock %}
+
+{% block inline_javascript %}
+  {{ block.super }}
+  <script>
+  $('#id_start_date').datetimepicker({
+    format: 'yyyy-mm-dd HH:MM:ss'
+});
+  </script>
+{% endblock  %}
+

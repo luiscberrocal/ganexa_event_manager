@@ -134,6 +134,11 @@
           </div>
         </div>
       {% endif %}
+      <div class="row">
+      <div class="col-12">
+        <a href="{% url 'fasting_track:create-fasting-session' %}" class="btn btn-primary">{% trans 'Fasting' %}</a>
+      </div>
+      </div>
     {% endif %}
   {% endblock content %}
 

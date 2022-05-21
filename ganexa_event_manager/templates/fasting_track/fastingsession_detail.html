@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-3">
+      {% trans 'Start date' %}
+    </div>
+    <div class="col-3">
+      {{ object.start_date }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {% trans 'Target duration' %}
+    </div>
+    <div class="col-3">
+      {{ object.target_duration }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {% trans 'Advance' %}
+    </div>
+    <div class="col-3">
+    
+    </div>
+  </div>
+{% endblock %}
