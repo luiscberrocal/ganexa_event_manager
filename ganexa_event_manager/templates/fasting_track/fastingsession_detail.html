@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n fasting_tags %}
 
 {% block content %}
   <div class="row">
@@ -20,10 +20,18 @@
   </div>
   <div class="row">
     <div class="col-3">
-      {% trans 'Advance' %}
+      {% trans 'Completed' %}
     </div>
-    <div class="col-3" hx-get="{% url 'fasting-track:advance' object.id %}" hx-trigger="load" hx-target="this">
-
+    <div class="col-3">
+      {{ object.completed|percentage }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {% trans 'Duration' %}
+    </div>
+    <div class="col-3">
+      {{ object.current_duration|hours }}
     </div>
   </div>
 {% endblock %}
