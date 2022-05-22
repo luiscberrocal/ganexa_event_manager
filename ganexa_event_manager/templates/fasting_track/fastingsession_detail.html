@@ -43,12 +43,16 @@
       {{ object.current_duration|hours }}
     </div>
   </div>
-  {% if not object.end_date %}
-    <div class="row">
-      <div class="col-12">
+  <div class="row">
+    {% if not object.end_date %}
+      <div class="col-2">
         <a class="btn btn-danger"
            href="{% url 'fasting-track:finish-fasting-session' object.pk %}">{% trans 'Finish fast' %}</a>
       </div>
+    {% endif %}
+    <div class="col-2">
+      <a href="{% url 'fasting-track:list-fasting-session' %}"
+         class="btn btn-primary">{% trans 'List fasting sessions' %}</a>
     </div>
-  {% endif %}
+  </div>
 {% endblock %}
