@@ -14,7 +14,7 @@
     {% for session in object_list %}
       <div class="row">
         <div class="col-2">
-          {{ session.start_date }}
+          {{ session.start_date|date:'Y-m-d H:i' }}
         </div>
         <div class="col-2">
           {{ session.target_duration|hours }}
@@ -30,5 +30,10 @@
         </div>
       </div>
     {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-12">
+      {% include 'snippets/pagination_bar.html' %}
+    </div>
   </div>
 {% endblock %}
