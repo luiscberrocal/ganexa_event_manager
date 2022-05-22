@@ -44,7 +44,11 @@ fasting_session_update_view = FastingSessionUpdateView.as_view()
 class FastingSessionListView(LoginRequiredMixin, ListView):
     model = FastingSession
     context_object_name = 'fasting_session_list'
-    paginate_by = 2
+    paginate_by = 5
+
+    def get_queryset(self):
+        qs = super(FastingSessionListView, self).get_queryset()
+        return qs.filter(user=self.request.user)
 
 
 fasting_session_list_view = FastingSessionListView.as_view()
