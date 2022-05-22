@@ -24,14 +24,14 @@ class FastingSession(AuditableModel, TimeStampedModel):
         else:
             end_date = self.end_date
         elapsed = end_date - self.start_date
-        return elapsed.seconds / 3600
+        return elapsed.total_seconds() / 3600
 
     @property
     def completed(self) -> float:
         return self.current_duration / self.target_duration
 
     class Meta:
-        ordering = ('start_date',)
+        ordering = ('-start_date',)
 
     def __str__(self):
         return f'{self.user.username} {self.start_date} {self.duration}'

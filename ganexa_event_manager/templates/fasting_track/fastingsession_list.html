@@ -1,20 +1,39 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n fasting_tags %}
 
 {% block content %}
+  <div class="row">
+    <div class="col-8">
+      <h2>{% trans 'Fasting sessions' %}</h2>
+    </div>
+    <div class="col-4">
+      <a href="{% url 'fasting-track:create-fasting-session' %}" class="btn btn-primary">{% trans 'New' %}</a>
+    </div>
+  </div>
   <div id="fast-session-list">
     {% for session in object_list %}
       <div class="row">
         <div class="col-2">
-          {{ session.start_date }}
+          {{ session.start_date|date:'Y-m-d H:i' }}
         </div>
         <div class="col-2">
-          {{ session.target_duration }}
+          {{ session.target_duration|hours }}
         </div>
-      <div class="col-2">
-        <a href="{% url 'fasting-track:detail-fasting-session' session.id %}" class="btn btn-primary">view</a>
-      </div>
+        <div class="col-2">
+          {{ session.duration|hours }}
+        </div>
+        <div class="col-2">
+          {{ session.completed|percentage }}
+        </div>
+        <div class="col-2">
+          <a href="{% url 'fasting-track:detail-fasting-session' session.id %}" class="btn btn-primary">view</a>
+        </div>
       </div>
     {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-12">
+      {% include 'snippets/pagination_bar.html' %}
+    </div>
   </div>
 {% endblock %}

@@ -1,7 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect
+from django.urls import reverse_lazy, reverse
+from django.utils import timezone
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView, DetailView, TemplateView
 
 from .forms import FastingSessionForm
@@ -26,7 +29,6 @@ class FastingSessionCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
 
-
 fasting_session_create_view = FastingSessionCreateView.as_view()
 
 
@@ -42,7 +44,7 @@ fasting_session_update_view = FastingSessionUpdateView.as_view()
 class FastingSessionListView(LoginRequiredMixin, ListView):
     model = FastingSession
     context_object_name = 'fasting_session_list'
-    paginate_by = 10
+    paginate_by = 2
 
 
 fasting_session_list_view = FastingSessionListView.as_view()
@@ -63,11 +65,15 @@ class FastingSessionDetailView(LoginRequiredMixin, DetailView):
 fasting_session_detail_view = FastingSessionDetailView.as_view()
 
 
-def advance(request, pk):
-    session = FastingSession.objects.get(id=pk)
-    p_advance = session.current_duration / session.target_duration
-    ctx = {'current_advance': p_advance}
-    template = 'fasting_track/partials/advance.html'
-    response = render(request, template, ctx)
-    return response
-
+@login_required
+def finish_fast(request: HttpRequest, pk: int) -> HttpResponse:
+    try:
+        fasting_session = FastingSession.objects.get(user=request.user, id=pk)
+        fasting_session.end_date = timezone.now()
+        fasting_session.duration = fasting_session.current_duration
+        fasting_session.save()
+        url = reverse('fasting_track:detail-fasting-session', kwargs={'pk': fasting_session.pk})
+        response = redirect(url)
+        return response
+    except FastingSession.DoesNotExist:
+        pass

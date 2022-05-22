@@ -9,6 +9,8 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
 from django.utils.translation import ugettext_lazy as _
+
+from config.views import favicon
 from ganexa_event_manager import __version__ as current_version
 
 admin.site.site_header = _("Ganexa Event Manager Admin v{}".format(current_version))
@@ -33,6 +35,7 @@ urlpatterns = i18n_patterns(
 
 # API URLS
 urlpatterns += [
+    path("favicon.ico", favicon),
     # API base url
     path("api/", include("config.api_router")),
     # DRF auth token
