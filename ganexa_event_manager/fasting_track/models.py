@@ -31,7 +31,7 @@ class FastingSession(AuditableModel, TimeStampedModel):
         return self.current_duration / self.target_duration
 
     class Meta:
-        ordering = ('start_date',)
+        ordering = ('-start_date',)
 
     def __str__(self):
         return f'{self.user.username} {self.start_date} {self.duration}'

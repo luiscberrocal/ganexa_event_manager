@@ -81,12 +81,13 @@ def delete_ticket_view(request, ticket_id):
     else:
         logger.error('You cannot delete a ticket that you do not own')
 
+
 @login_required
 def get_ticket_view(request, ticket_id):
     try:
         ticket = Ticket.objects.get(id=ticket_id)
         template_name = 'events/partials/ticket_detail.html'
-        context = {'ticket':ticket}
+        context = {'ticket': ticket}
         response = render(request, template_name, context)
         return response
     except Ticket.DoesNotExist:
