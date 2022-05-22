@@ -24,7 +24,7 @@ class FastingSession(AuditableModel, TimeStampedModel):
         else:
             end_date = self.end_date
         elapsed = end_date - self.start_date
-        return elapsed.seconds / 3600
+        return elapsed.total_seconds() / 3600
 
     @property
     def completed(self) -> float:

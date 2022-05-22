@@ -2,6 +2,7 @@
 {% load i18n fasting_tags %}
 
 {% block content %}
+  <h3>{% trans 'Current fast' %}</h3>
   <div class="row">
     <div class="col-3">
       {% trans 'Start date' %}
@@ -9,6 +10,14 @@
     <div class="col-3">
       {{ object.start_date }}
     </div>
+    {% if object.end_date is not None %}
+      <div class="col-3">
+        {% trans 'End date' %}
+      </div>
+      <div class="col-3">
+        {{ object.end_date }}
+      </div>
+    {% endif %}
   </div>
   <div class="row">
     <div class="col-3">
@@ -34,4 +43,12 @@
       {{ object.current_duration|hours }}
     </div>
   </div>
+  {% if not object.end_date %}
+    <div class="row">
+      <div class="col-12">
+        <a class="btn btn-danger"
+           href="{% url 'fasting-track:finish-fasting-session' object.pk %}">{% trans 'Finish fast' %}</a>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

@@ -1,7 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect
+from django.urls import reverse_lazy, reverse
+from django.utils import timezone
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView, DetailView, TemplateView
 
 from .forms import FastingSessionForm
@@ -24,7 +27,6 @@ class FastingSessionCreateView(LoginRequiredMixin, CreateView):
         kwargs = super(FastingSessionCreateView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
-
 
 
 fasting_session_create_view = FastingSessionCreateView.as_view()
@@ -63,11 +65,14 @@ class FastingSessionDetailView(LoginRequiredMixin, DetailView):
 fasting_session_detail_view = FastingSessionDetailView.as_view()
 
 
-def advance(request, pk):
-    session = FastingSession.objects.get(id=pk)
-    p_advance = session.current_duration / session.target_duration
-    ctx = {'current_advance': p_advance}
-    template = 'fasting_track/partials/advance.html'
-    response = render(request, template, ctx)
-    return response
-
+@login_required
+def finish_fast(request: HttpRequest, pk: int) -> HttpResponse:
+    try:
+        fasting_session = FastingSession.objects.get(user=request.user, id=pk)
+        fasting_session.end_date = timezone.now()
+        fasting_session.save()
+        url = reverse('fasting_track:detail-fasting-session', kwargs={'pk': fasting_session.pk})
+        response = redirect(url)
+        return response
+    except FastingSession.DoesNotExist:
+        pass
