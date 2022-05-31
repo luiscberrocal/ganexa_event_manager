@@ -15,5 +15,6 @@ def hours(value):
     return f'{hours_value} {hours_text}'
 
 
+
 register.filter('percentage', percentage)
 register.filter('hours', hours)
