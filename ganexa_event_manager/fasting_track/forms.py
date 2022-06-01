@@ -14,8 +14,10 @@ class FastingSessionForm(forms.ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_id = 'fasting-form'
         self.helper.add_input(Submit('submit', _('Save')))
-        self.fields['start_date'].initial = timezone.now()
-        self.fields['start_date'].widget = forms.DateTimeInput(attrs={'type': 'datetime-local'})
+        date_format = "%Y-%m-%dT%H:%M"
+        self.fields['start_date'].initial = timezone.now().strftime(date_format)
+        self.fields['start_date'].widget = forms.DateTimeInput(format=date_format,
+                                                               attrs={'type': 'datetime-local'})
         self.fields['user'].initial = self.user
         self.fields['user'].widget = forms.HiddenInput()
 

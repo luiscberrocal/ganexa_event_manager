@@ -35,3 +35,10 @@ class FastingSession(AuditableModel, TimeStampedModel):
 
     def __str__(self):
         return f'{self.user.username} {self.start_date} {self.duration}'
+
+    def finish(self, commit: bool = True) -> float:
+        self.end_date = timezone.now()
+        self.duration = self.current_duration
+        if commit:
+            self.save()
+        return self.duration
