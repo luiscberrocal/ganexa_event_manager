@@ -4,7 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
-from django.utils import timezone
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView, DetailView, TemplateView
 
 from .forms import FastingSessionForm
@@ -36,6 +35,11 @@ class FastingSessionUpdateView(LoginRequiredMixin, UpdateView):
     model = FastingSession
     form_class = FastingSessionForm
     success_url = reverse_lazy('fasting-track:list-fasting-session')
+
+    def get_form_kwargs(self):
+        kwargs = super(FastingSessionUpdateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 
 fasting_session_update_view = FastingSessionUpdateView.as_view()

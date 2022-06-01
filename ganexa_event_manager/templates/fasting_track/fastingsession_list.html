@@ -38,9 +38,12 @@
   <div class="col-2 col-md-2">
     {{ session.completed|percentage }}
   </div>
-  <div class="col-4 col-md-3">
+  <div class="col-6 col-md-3">
     <a href="{% url 'fasting-track:detail-fasting-session' session.id %}" class="btn btn-primary">
       <i class="bi bi-eye"></i>
+    </a>
+    <a href="{% url 'fasting-track:update-fasting-session' session.id %}" class="btn btn-success">
+      <i class="bi bi-pencil"></i>
     </a>
     <a href="{% url 'fasting-track:delete-fasting-session' session.id %}" class="btn btn-danger">
       <i class="bi bi-trash"></i>
