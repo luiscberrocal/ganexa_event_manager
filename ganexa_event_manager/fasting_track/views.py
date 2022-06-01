@@ -73,9 +73,7 @@ fasting_session_detail_view = FastingSessionDetailView.as_view()
 def finish_fast(request: HttpRequest, pk: int) -> HttpResponse:
     try:
         fasting_session = FastingSession.objects.get(user=request.user, id=pk)
-        fasting_session.end_date = timezone.now()
-        fasting_session.duration = fasting_session.current_duration
-        fasting_session.save()
+        fasting_session.finish()
         url = reverse('fasting_track:detail-fasting-session', kwargs={'pk': fasting_session.pk})
         response = redirect(url)
         return response
