@@ -1,0 +1,7 @@
+<div class="row" hx-get="{% url 'fasting-track:statistics-fasting-session' %}" hx-trigger="onload"
+     hx-target="#statistics"
+     id="statistics">
+  <div class="col-12">
+    Average duration: {{ average_duration }}
+  </div>
+</div>
