@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from model_utils.models import TimeStampedModel
 
 from ganexa_event_manager.core.models import AuditableModel
+from ganexa_event_manager.fasting_track.managers import FastingSessionManager
 
 
 class FastingSession(AuditableModel, TimeStampedModel):
@@ -13,9 +14,11 @@ class FastingSession(AuditableModel, TimeStampedModel):
                              on_delete=models.PROTECT)
     start_date = models.DateTimeField(_('Start date'))
     end_date = models.DateTimeField(_('End date'), null=True, blank=True)
-    duration = models.PositiveSmallIntegerField(_('Duration'), default=0)
+    duration = models.FloatField(_('Duration'), default=0)
     target_duration = models.PositiveSmallIntegerField(_('Target duration'), default=16)
     comments = models.CharField(_('Comments'), max_length=180, null=True, blank=True)
+
+    objects = FastingSessionManager()
 
     @property
     def current_duration(self) -> float:
@@ -42,3 +45,8 @@ class FastingSession(AuditableModel, TimeStampedModel):
         if commit:
             self.save()
         return self.duration
+
+    def save(self, *args, **kwargs):
+        self.duration = self.current_duration
+        super(FastingSession, self).save(*args, **kwargs)
+

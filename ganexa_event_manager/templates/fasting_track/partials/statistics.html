@@ -1,0 +1,15 @@
+{% load i18n fasting_tags %}
+<div class="row" hx-get="{% url 'fasting-track:statistics-fasting-session' %}" hx-trigger="onload"
+     hx-target="#statistics"
+     id="statistics">
+  <div class="col-12 h4">
+    {% trans 'Statistics' %}
+  </div>
+  <div class="col-12">
+    {% trans 'Average duration' %}: {{ average_duration|hours }}
+  </div>
+  <div class="col-12">
+    {% trans 'Longest fasting session' %}: {{ longest_fasting_session.duration }}
+    {% trans 'Date'%}: {{ longest_fasting_session.start_date }}
+  </div>
+</div>

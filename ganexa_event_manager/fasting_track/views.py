@@ -2,8 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
+from django.views.decorators.http import require_http_methods
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView, DetailView, TemplateView
 
 from .forms import FastingSessionForm
@@ -83,3 +84,14 @@ def finish_fast(request: HttpRequest, pk: int) -> HttpResponse:
         return response
     except FastingSession.DoesNotExist:
         pass
+
+
+@require_http_methods(['GET'])
+@login_required
+def statistics_view(request: HttpRequest) -> HttpResponse:
+    average_duration = FastingSession.objects.average_hours(user=request.user)
+    context = {'average_duration': average_duration,
+               'longest_fasting_session': FastingSession.objects.longest_fasting_session(user=request.user)}
+    template_name = 'fasting_track/partials/statistics.html'
+    response = render(request, template_name, context)
+    return response

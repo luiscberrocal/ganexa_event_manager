@@ -22,7 +22,7 @@ class FastingSessionFactory(DjangoModelFactory):
     # end_date = LazyAttribute(lambda x: faker.date_time_between(start_date="-1y", end_date="now",
     #                                                           tzinfo=timezone(settings.TIME_ZONE)))
     end_date = None
-    duration = 16
+    duration = 18
     # duration = PositiveSmallIntegerField We do not support this field type
     # target_duration = PositiveSmallIntegerField We do not support this field type
     comments = LazyAttribute(lambda x: faker.text(max_nb_chars=180))
