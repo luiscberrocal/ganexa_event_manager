@@ -9,7 +9,7 @@
     {% trans 'Average duration' %}: {{ average_duration|hours }}
   </div>
   <div class="col-12">
-    {% trans 'Longest fasting session' %}: {{ longest_fasting_session.duration }}
+    {% trans 'Longest fasting session' %}: {{ longest_fasting_session.duration|hours }}
     {% trans 'Date'%}: {{ longest_fasting_session.start_date }}
   </div>
 </div>
