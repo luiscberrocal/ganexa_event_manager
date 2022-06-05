@@ -90,10 +90,8 @@ def finish_fast(request: HttpRequest, pk: int) -> HttpResponse:
 @login_required
 def statistics_view(request: HttpRequest) -> HttpResponse:
     average_duration = FastingSession.objects.average_hours(user=request.user)
-    context = {'average_duration': average_duration}
-    context['longest_duration'] = 45.5
-    print(f'User: {request.user}')
-    print(f'Context: {context}')
+    context = {'average_duration': average_duration,
+               'longest_fasting_session': FastingSession.objects.longest_fasting_session(user=request.user)}
     template_name = 'fasting_track/partials/statistics.html'
     response = render(request, template_name, context)
     return response
