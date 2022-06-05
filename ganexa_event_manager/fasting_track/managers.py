@@ -11,8 +11,12 @@ if TYPE_CHECKING:
 
 class FastingSessionManager(models.Manager):
 
-    def average_hours(self, user: 'User', days: int = 7) -> float:
-        average_qs = self.filter(end_date__isnull=False, user=user)[:days]
+    def average_hours(self, user: 'User', days: int = -1) -> float:
+        if days > 2:
+            average_qs = self.filter(end_date__isnull=False, user=user)[:days]
+        else:
+            average_qs = self.filter(end_date__isnull=False, user=user)
+
         average = average_qs.aggregate(Avg('duration'))
         return average['duration__avg']
 

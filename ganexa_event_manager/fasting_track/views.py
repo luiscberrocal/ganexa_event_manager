@@ -95,3 +95,13 @@ def statistics_view(request: HttpRequest) -> HttpResponse:
     template_name = 'fasting_track/partials/statistics.html'
     response = render(request, template_name, context)
     return response
+
+@require_http_methods(['GET'])
+@login_required
+def bar_chart_view(request: HttpRequest) -> HttpResponse:
+    qs = FastingSession.objects.average_hours(user=request.user)
+    context = dict()
+    template_name = 'fasting_track/partials/statistics.html'
+
+    response = render(request, template_name, context)
+    return response
