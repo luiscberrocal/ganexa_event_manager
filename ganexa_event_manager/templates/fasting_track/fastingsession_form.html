@@ -3,15 +3,23 @@
 {% load i18n %}
 
 {% block content %}
-  {% crispy form %}
+  <form class="form-horizontal" method="post" action="" id="fasting-session-form">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="control-group">
+            <div class="controls">
+                <a href="{% url 'fasting-track:list-fasting-session' %}" class="btn btn-primary">{% trans 'Cancel' %}</a>
+                <button type="submit" class="btn btn-primary" id="save_button">{% trans 'Save' %}</button>
+            </div>
+        </div>
 {% endblock %}
 
 {% block inline_javascript %}
   {{ block.super }}
   <script>
-  $('#id_start_date').datetimepicker({
-    format: 'yyyy-mm-dd HH:MM:ss'
-});
+    $('#id_start_date').datetimepicker({
+      format: 'yyyy-mm-dd HH:MM:ss'
+    });
   </script>
-{% endblock  %}
+{% endblock %}
 

@@ -14,7 +14,7 @@ class FastingSessionForm(forms.ModelForm):
         super(FastingSessionForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_id = 'fasting-form'
-        self.helper.add_input(Submit('submit', _('Save')))
+#        self.helper.add_input(Submit('submit', _('Save')))
         date_format = "%Y-%m-%dT%H:%M"
         local_now = localtime(timezone.now())
         self.fields['start_date'].initial = local_now.strftime(date_format)
@@ -22,11 +22,17 @@ class FastingSessionForm(forms.ModelForm):
                                                                attrs={'type': 'datetime-local'})
         self.fields['user'].initial = self.user
         self.fields['user'].widget = forms.HiddenInput()
+        if self.instance.end_date is not None:
+            self.fields['end_date'].widget = forms.DateTimeInput(format=date_format,
+                                                                 attrs={'type': 'datetime-local'})
+        else:
+            self.fields['end_date'].widget = forms.HiddenInput()
 
     class Meta:
         model = FastingSession
         fields = (
             'start_date',
+            'end_date',
             'target_duration',
             'comments',
             'user',
