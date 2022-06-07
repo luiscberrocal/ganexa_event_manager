@@ -1,5 +1,5 @@
 {% load i18n fasting_tags %}
-<div class="row" hx-get="{% url 'fasting-track:chart-fasting-session' %}" hx-trigger="onload"
+<div class="row" hx-get="{% url 'fasting-track:chart-fasting-session' %}" hx-trigger="load"
      hx-target="#bar-chart"
      id="bar-chart">
   <div class="col-12 h4">

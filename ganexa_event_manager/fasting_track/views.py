@@ -100,7 +100,7 @@ def statistics_view(request: HttpRequest) -> HttpResponse:
 @login_required
 def bar_chart_view(request: HttpRequest) -> HttpResponse:
     qs = FastingSession.objects.filter(user=request.user)
-    fig = px.line(
+    fig = px.bar(
         x=[fs.start_date for fs in qs],
         y=[fs.duration for fs in qs]
     )

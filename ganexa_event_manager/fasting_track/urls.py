@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import fasting_session_list_view, fasting_session_create_view, \
     fasting_session_update_view, fasting_session_delete_view, fasting_session_detail_view, fasting_session_main_view, \
-    finish_fast, statistics_view
+    finish_fast, statistics_view, bar_chart_view
 
 app_name = "fasting_track"
 urlpatterns = [
@@ -15,6 +15,7 @@ urlpatterns = [
     path(r'fasting-session/<int:pk>/', fasting_session_detail_view, name='detail-fasting-session'),
 
     path('fasting-session/finish/<int:pk>/', finish_fast, name='finish-fasting-session'),
-    path('fasting-session/statistics/', statistics_view, name='statistics-fasting-session')
+    path('fasting-session/statistics/', statistics_view, name='statistics-fasting-session'),
+    path('fasting-session/chart/', bar_chart_view, name='chart-fasting-session')
 
 ]
