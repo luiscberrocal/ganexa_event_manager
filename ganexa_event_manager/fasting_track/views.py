@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.decorators.http import require_http_methods
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView, DetailView, TemplateView
-
+import plotly.express as px
 from .forms import FastingSessionForm
 from .models import FastingSession
 
@@ -99,9 +99,15 @@ def statistics_view(request: HttpRequest) -> HttpResponse:
 @require_http_methods(['GET'])
 @login_required
 def bar_chart_view(request: HttpRequest) -> HttpResponse:
-    qs = FastingSession.objects.average_hours(user=request.user)
+    qs = FastingSession.objects.filter(user=request.user)
+    fig = px.line(
+        x=[fs.start_date for fs in qs],
+        y=[fs.duration for fs in qs]
+    )
+    chart = fig.to_html()
     context = dict()
-    template_name = 'fasting_track/partials/statistics.html'
+    context['chart'] = chart
+    template_name = 'fasting_track/partials/bar_chart.html'
 
     response = render(request, template_name, context)
     return response
