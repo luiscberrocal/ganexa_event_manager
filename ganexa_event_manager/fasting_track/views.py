@@ -104,7 +104,7 @@ def bar_chart_view(request: HttpRequest) -> HttpResponse:
         x=[fs.start_date for fs in qs],
         y=[fs.duration for fs in qs]
     )
-    chart = fig.to_html()
+    chart = fig.to_html(full_html=False)
     context = dict()
     context['chart'] = chart
     template_name = 'fasting_track/partials/bar_chart.html'

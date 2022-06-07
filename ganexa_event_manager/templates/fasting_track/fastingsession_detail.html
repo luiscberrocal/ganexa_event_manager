@@ -55,13 +55,9 @@
          class="btn btn-primary"><i class="bi bi-card-list"></i></a>
     </div>
   </div>
-  <div class="row" hx-get="{% url 'fasting-track:statistics-fasting-session' %}" hx-trigger="load"
+  <div class="row" hx-get="{% url 'fasting-track:statistics-fasting-session' %}" hx-trigger="once"
        hx-target="#statistics"
        id="statistics">
   </div>
-
-  <div class="row" hx-get="{% url 'fasting-track:chart-fasting-session' %}" hx-trigger="load"
-       hx-target="#bar-chart"
-       id="bar-chart">
-  </div>
+  {% include 'fasting_track/partials/bar_chart.html' %}
 {% endblock %}
