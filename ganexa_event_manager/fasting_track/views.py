@@ -99,13 +99,18 @@ def statistics_view(request: HttpRequest) -> HttpResponse:
 @require_http_methods(['GET'])
 @login_required
 def bar_chart_view(request: HttpRequest) -> HttpResponse:
-    qs = FastingSession.objects.filter(user=request.user)
+    context = dict()
+    qs = FastingSession.objects.filter(user=request.user)[:7]
+    import time
+    start = time.time()
     fig = px.bar(
         x=[fs.start_date for fs in qs],
         y=[fs.duration for fs in qs]
     )
-    chart = fig.to_html(full_html=False)
-    context = dict()
+    context['building_chart'] = time.time() - start
+    start = time.time()
+    chart = fig.to_html(full_html=False) #, include_plotlyjs=False)
+    context['building_chart_to_html'] = time.time() - start
     context['chart'] = chart
     template_name = 'fasting_track/partials/bar_chart.html'
 

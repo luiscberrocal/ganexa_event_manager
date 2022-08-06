@@ -5,8 +5,8 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from model_utils.models import TimeStampedModel
 
-from ganexa_event_manager.core.models import AuditableModel
-from ganexa_event_manager.fasting_track.managers import FastingSessionManager
+from ..core.models import AuditableModel
+from .managers import FastingSessionManager
 
 
 class FastingSession(AuditableModel, TimeStampedModel):
