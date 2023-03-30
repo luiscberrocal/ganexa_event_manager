@@ -88,6 +88,7 @@ LOCAL_APPS = [
     "ganexa_event_manager.golf",
     "ganexa_event_manager.ex_training",
     "ganexa_event_manager.fasting_track",
+    "ganexa_event_manager.comp_time",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
