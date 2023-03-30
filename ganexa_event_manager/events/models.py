@@ -13,6 +13,7 @@ class Event(TimeStampedModel):
     start_date = models.DateField(_('Start date'))
     end_date = models.DateField(_('End date'))
     max_tickets_per_day = models.PositiveSmallIntegerField(_('Max tickets per day'))
+    archived = models.Boolean(_('Is archived'))
 
     def __str__(self):
         return self.name
@@ -28,6 +29,28 @@ class Event(TimeStampedModel):
             time_slots.append(time_slot)
             current_time += timedelta(hours=duration)
         return TimeSlot.objects.bulk_create(time_slots)
+
+
+class Presentation(TimeStampedModel):
+    TYPE_PRESENTATION = 'PRESENTATION'
+    TYPE_WORKSHOP = 'WORKSHOP'
+
+    TYPE_CHOICES = (
+        (TYPE_PRESENTATION, _('Presentation')),
+        (TYPE_WORKSHOP, _('Workshop'))
+    )
+
+    event = models.ForeignKey(Event, verbose_name=_('Event'), related_name='time_slots', on_delete=models.CASCADE)
+    presenter = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Presenter'), related_name='tickets',
+                                  on_delete=models.PROTECT)
+    presentation_type = models.CharField(_('Presentation type'), max_length=16, choices=TYPE_CHOICES,
+                                         default=TYPE_PRESENTATION)
+    presenter_name = models.CharField(_('Presenter\'s name'), max_length=32)
+    title = models.CharField(_('Title'), max_length=128)
+    abstract = models.TextField(_('Abstract'))
+    archived = models.Boolean(_('Is archived'))
+    status = models.CharField(_('Status'), max_length=16, default='PROPOSED')
+    metadate = models.JSONField(_('Metadata'))
 
 
 class TimeSlot(TimeStampedModel):
