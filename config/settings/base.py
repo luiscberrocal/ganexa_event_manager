@@ -2,7 +2,7 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import environ
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
@@ -88,6 +88,7 @@ LOCAL_APPS = [
     "ganexa_event_manager.golf",
     "ganexa_event_manager.ex_training",
     "ganexa_event_manager.fasting_track",
+    "ganexa_event_manager.comp_time",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
